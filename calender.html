@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        section{
+            background-image: url('moon.jpg');
+            background-position: center;
+            background-repeat: no-repeat;
+           
+        }
+      .main{
+          display:grid;
+          grid-template-columns:100px 100px 100px 100px;
+          grid-template-rows: 40px 40px;
+          grid-gap:8px;
+          background-color:rgb(255,255,255,.2);
+           width:424px;
+      }
+      .outer0{
+        
+        text-align: center;
+        font-size: 24px;
+        background-color:rgb(255,255,255,.2);
+      }
+      .cal{
+          display:grid;
+          grid-template-columns: 100px 100px 100px 100px 100px 100px 100px;
+          grid-template-rows: 40px 40px 40px 40px 40px 40px;
+      }
+      .outer{
+          
+          text-align:center;
+          font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+          background-color: pink;
+          font-size: 18px;
+      }
+      #day{
+          background-color:black;
+          color:white;
+      }
+      #h{
+        background-color:black;
+          color:white;
+      }
+      #m{
+        background-color:black;
+          color:white;
+      }
+      #s{
+        background-color:black;
+          color:white;
+      }
+      .side{
+          border-radius:50%;
+          margin:8px;
+          background-color: yellow;
+      }
+      #sp1{
+          margin:4px;
+          background-color: aqua;
+
+      }
+      #sp2{
+          margin:4px;
+          background-color: aqua;
+      }
+      main{
+          margin-left:400px;
+          background-color: rgb(255,255,255,.6);
+      }
+      select{
+          width:100px;
+          height:28px;
+          font-size:19px;
+      }
+      option{
+          font-size:18px;
+      }
+    </style>
+</head>
+<body>
+    <section>
+        <main>
+    <div class='main'>
+        <div class='outer0'>day :</div>
+        <div class='outer0'> hours :</div>
+        <div class='outer0'> minutes :</div>
+        <div class='outer0'> second:</div>
+        <div class='outer0' id='day'>---</div>
+        <div class='outer0' id='h'>00</div>
+        <div class='outer0' id='m'>00</div>
+        <div class='outer0' id='s'>00</div>
+
+    </div>
+    <h2><span id='sp1'></span><span id='sp2'></span>january   2021<span>
+        <select>
+            <option>2021</option>
+            <option>2019</option>
+            <option>2020</option>
+        </select>
+    </span></h2>
+    <div class='cal'>
+            
+        <div class='outer'>monday</div>
+        <div class='outer'>tuesday</div>
+        <div class='outer'>wednesday</div>
+        <div class='outer'>thursday</div>
+        <div class='outer'>friday</div>
+        <div class='outer'>saturday</div>
+        <div class='outer'>sunday</div>
+        <div class='outer side'>1</div>
+        <div class='outer side'>2</div>
+        <div class='outer side'>3</div>
+        <div class='outer side'>4</div>
+        <div class='outer side'>5</div>
+        <div class='outer side'>6</div>
+        <div class='outer side'>7</div>
+        <div class='outer side'>8</div>
+        <div class='outer side'>9</div>
+        <div class='outer side'>10</div>
+        <div class='outer side'>11</div>
+        <div class='outer side'>12</div>
+        <div class='outer side'>13</div>
+        <div class='outer side'>14</div>
+        <div class='outer side'>15</div>
+        <div class='outer side'>16</div>
+        <div class='outer side'>17</div>
+        <div class='outer side'>18</div>
+        <div class='outer side'>19</div>
+        <div class='outer side'>20</div>
+        <div class='outer side'>21</div>
+        <div class='outer side'>22</div>
+        <div class='outer side'>23</div>
+        <div class='outer side'>24</div>
+        <div class='outer side'>25</div>
+        <div class='outer side'>26</div>
+        <div class='outer side'>27</div>
+        <div class='outer side'>28</div>
+        <div class='outer side'>29</div>
+        <div class='outer side'>30</div>
+        <div class='outer side'>31</div>
+
+    </div></main>
+    </section>
+    <script>
+      var h=document.getElementById('h');
+      var m=document.getElementById('m');
+      var s=document.getElementById('s');
+      var day=document.getElementById('day');
+      var date=document.querySelectorAll(".side");
+      var sp2=document.getElementById('sp2');
+      var sp1=document.getElementById('sp1');
+      console.log(date);
+      console.log(date[5].innerHTML);
+      var days=['mon','tue','wed','thu','fri','sat','sun'];
+      var sec=0;
+      var min=0;
+      var hor=0;
+      var i=0;
+      var d=0;
+      const timerid=setInterval(()=>{
+          if(sec<10){
+              s.innerText='0'+sec;
+          }
+          else{
+            s.innerHTML=sec;
+          }
+          sec++;
+          if(sec==12){
+             
+              sec=1;
+              min++;
+              if(min<10){
+                  m.innerText='0'+min;
+
+              }
+              else{
+                  m.innerText=min;
+              }
+              if(min==5){
+                  hor++;
+                  min=0;
+                  sec=1;
+                  
+                  if(min<10){
+                  h.innerText='0'+hor;
+                  day.innerText=days[i];
+                  sp1.innerText=days[i];
+                  sp2.innerText=date[d].innerHTML;
+                  date[d].style.backgroundColor='green';
+                  date[d].style.color='white';
+                  d++;
+                  i++;
+                  if(i==days.length){
+                      i=0;
+                  }
+                  }
+                  else{
+                      h.innerText=hor;
+                  }
+              }
+          }
+      },1000)
+    </script>
+</body>
+</html>
