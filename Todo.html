@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <style>
+    *{
+      margin:0;
+      padding:0;
+      box-sizing: border-box;
+    }
+
+    body{
+
+      background-color:pink;
+    }
+     ul li{
+       list-style: none;
+       border:1px solid blue;
+       background-color:yellow;
+       margin:8px;
+       padding:10px;
+       width:500px;
+     }
+     .deletebtn{
+       float:right;
+       width:40px;
+     }
+     .deletebtn:hover{
+       background-color: red;
+       cursor: pointer;
+       color:white;
+
+     }
+     .header{
+       background-color:aqua;
+       height:80px;
+       }
+       #searchid{
+         margin-left:1020px;
+         width:280px;
+         height:40px;
+         margin-top:20px;
+       }
+       .insertitem{
+         margin-left:500px;
+
+       }
+
+       #itemid{
+         width:280px;
+         height:30px;
+         margin-top:20px;
+
+       }
+       #items{
+         margin-left:400px;
+       }
+       #addid{
+         width:100px;
+
+         height:30px;
+
+       }
+  </style>
+</head>
+<body>
+  <div class='header'>
+  <input type='text' placeholder="Search Items" id='searchid'>
+  </div>
+  <div class='insertitem'>
+      <input type='text' placeholder="Insert item" id='itemid'>
+      <input type='submit' value='Add' id='addid'>
+    </div>
+  <ul id='items'>
+    <li>mango <button type='button' class='deletebtn'>X</button></li>
+    <li>potato <button type='button' class='deletebtn'>X</button></li>
+    <li>tomato <button type='button' class='deletebtn'>X</button></li>
+    <li>onion <button type='button' class='deletebtn'>X</button></li>
+    <li>coconuts <button type='button' class='deletebtn'>X</button></li>
+  </ul>
+
+  <script>
+   var filter=document.getElementById('searchid');
+   var itemlist=document.getElementById('items');
+    console.log(itemlist);
+
+   filter.addEventListener('keyup',filterfun);
+   function filterfun(e){
+       var text=e.target.value.toLowerCase();
+
+       var items=itemlist.getElementsByTagName('li');
+    
+       Array.from(items).forEach((item)=>{
+         //console.log(item);
+         var itemname=item.firstChild.textContent;
+        //console.log(item.firstChild.textContent);
+        //console.log(itemname);
+        // console.log(itemname.toLowerCase().indexOf(text));
+        if(itemname.toLowerCase().indexOf(text)!=-1){
+              item.style.display='block';
+        }
+        else{
+          item.style.display="none";
+        }
+       })
+
+   }
+
+   var item=document.getElementById('itemid');
+
+   var addid=document.getElementById('addid');
+   addid.addEventListener('click',additem);
+   function additem(){
+     if(item.value!=''){
+      var li=document.createElement('li');
+     var deletebtn=document.createElement('button');
+     deletebtn.classList.add('deletebtn');
+     deletebtn.appendChild(document.createTextNode('X'));
+     li.appendChild(document.createTextNode(item.value));
+     li.appendChild(deletebtn);
+     itemlist.appendChild(li);
+     console.log(li);
+
+     //remove data from input field...
+     var data=document.getElementById('itemid');
+     data.value='';
+
+     }
+     
+   }
+      itemlist.addEventListener('click',removeitem);
+      function removeitem(e){
+           if(e.target.classList.contains('deletebtn')){
+             if(confirm('You are Sure..??')){
+               var li=e.target.parentElement;
+               itemlist.removeChild(li);
+                  
+             }
+              
+           }
+         
+      }
+  </script>
+</body>
+</html>
